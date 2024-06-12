@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kabisat</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+        body {
+    font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 200px;
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+            position: fixed;
+}
+
+        #background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: white;
+            font-family: "Kanit", sans-serif;
+            font-weight: 800;
+            font-style: normal;          
+            border: none;
+            
+        }
+
+        input, button {
+            padding: 10px;
+            margin: -5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            background-color: rgba(128, 128, 128, 0.5);
+            color: white;
+            font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+        }
+
+        #yearInput {
+            width: 50%;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            background-color: rgba(128, 128, 128, 0.5);
+        }
+
+        #yearInput:focus {
+            box-shadow: 0 0 10px #e0e0e0;
+            outline: none;
+        }
+        button:hover {
+            box-shadow: 0 0 10px #e0e0e0;
+            outline: none;
+        }
+        p {
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            padding: 25px;
+            width: 50%;
+            height: 50%;
+            color: white;
+            border-radius: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            background: linear-gradient(to right, lightblue, gray);
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+        }
+        #yearInput::placeholder{
+            color: white;
+            font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+        }
+        
+    </style>
+</head>
+<body>
+    <img src="https://picjj.com/images/2024/06/12/WriqRu.png" alt="Background Image" id="background-image">
+    <h1>CHECK TAHUN KABISAT</h1>
+    <input type="number" id="yearInput" placeholder="Masukkan Tahun" min="1" max="9999">
+    <button onclick="checkLeapYear()">Cek</button>
+    <p id="result">Hasil Disini</p>
+
+    <script>
+        document.getElementById('yearInput').addEventListener('input', function() {
+            const yearInput = this.value;
+            this.value = yearInput.replace(/[^0-9]/g, '').slice(0, 4);
+        });
+
+        function checkLeapYear() {
+            const year = document.getElementById('yearInput').value;
+            const resultElement = document.getElementById('result');
+
+            if (year === '') {
+                resultElement.textContent = 'Silakan Masukkan Tahun.';
+                return;
+            }
+
+            const yearInt = parseInt(year, 10);
+
+            if (yearInt < 1 || yearInt > 9999) {
+                resultElement.textContent = 'Masukkan Tahun Yang Valid Antara 1 Dan 9999.';
+                return;
+            }
+
+            if ((yearInt % 4 === 0 && yearInt % 100 !== 0) || (yearInt % 400 === 0)) {
+                resultElement.textContent = yearInt + ' Adalah Tahun Kabisat.';
+            } else {
+                resultElement.textContent = yearInt + ' Bukan Tahun Kabisat.';
+            }
+        }
+    </script>
+</body>
+</html>
